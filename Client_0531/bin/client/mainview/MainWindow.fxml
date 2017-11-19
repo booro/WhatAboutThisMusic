@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.web.*?>
+
+
+<StackPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.mainview.MainWindowController">
+   <children>
+      <AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="914.0" prefWidth="1834.0">
+         <children>
+            <WebView fx:id="youtubePlayerWebView" layoutX="50.0" layoutY="94.0" prefHeight="694.0" prefWidth="1363.0" />
+            <TextArea fx:id="chatTextArea" editable="false" layoutX="1436.0" layoutY="93.0" prefHeight="694.0" prefWidth="367.0" />
+            <TextField fx:id="sendMessageTextField" layoutX="1436.0" layoutY="810.0" prefHeight="29.0" prefWidth="367.0" promptText="메시지를 입력하세요" />
+            <Button fx:id="likeButton" layoutX="1337.0" layoutY="805.0" mnemonicParsing="false" onAction="#onLikeButton" prefHeight="38.0" prefWidth="76.0" text="좋아요">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="playListButton" layoutX="50.0" layoutY="43.0" mnemonicParsing="false" onAction="#onPlayListButton" text="플레이 리스트" />
+            <Button fx:id="userListButton" layoutX="1718.0" layoutY="51.0" mnemonicParsing="false" onAction="#onUserListButton" text="유저 목록" />
+            <Label fx:id="vidStatusLabel" layoutX="617.0" layoutY="48.0" text="현재 재생중인 비디오가 없습니다." />
+            <Label fx:id="likeCountLabel" layoutX="1247.0" layoutY="815.0" text="좋아요 : 0" />
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

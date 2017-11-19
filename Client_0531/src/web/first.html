@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+    <meta charset=utf-8>
+        <script src="jquery-3.2.1.min.js"></script>
+    </head>
+    <body>
+        <script>
+        
+        var tag = document.createElement('script');
+
+        var fileDisplayArea = document.getElementById('fileDisplayArea'); // d
+
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+        var vid;
+        var isPaused = 0;
+        var currentTime=0;
+
+        function onYouTubeIframeAPIReady() {
+          player = new YT.Player('player', {
+        	  height: '630',
+              width: '1120',
+            videoId: 'TP9luRtEqjc',
+            playerVars: { 'autoplay': 0, 'controls': 0 },
+            events: {
+              'onReady': onPlayerReady,
+              'onStateChange': onPlayerStateChange
+            }
+          });
+        }
+
+        // 4. The API will call this function when the video player is ready.
+        function onPlayerReady(event) {
+        }
+
+        function onPlayerStateChange(event) {
+          }
+        
+        function requestVidId(){
+        	CLIENT.requestVidId();
+        	player.cueVideoById(vid);
+        	CLIENT.requestSync();
+        }
+
+        function insertVid(vid_id){
+          player.cueVideoById(vid_id);
+          document.getElementById("helloprompt").innerHTML=vid_id.length;
+        }
+         
+        function clearHello(user){
+          document.getElementById("helloprompt").innerHTML="Hello <a href='http://java-buddy.blogspot.com/'>Java-Buddy</a>";
+        }
+
+        function getCurrentTime(){
+        	return player.getCurrentTime();
+        }
+        
+        function setVid(vidId, sync){
+        	vid = vidId;
+        	currentTime = sync;
+        	
+        	if(player.getPlayerState() == -1){
+        		player.cueVideoById(vid);
+            	player.seekTo(currentTime, true);
+        	}
+        }
+        
+function sayGoodbye(name)  {
+	var  message  = CLIENT.sayGoodbye(name);
+	document.getElementById('my_message').innerHTML = message;
+}
+</script>
+
+<div  id="my_message"></div>
+<div id="player"></div>
+    </body>
+</html>

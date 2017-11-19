@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="playListPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="685.0" prefWidth="404.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.playlistview.PlayListWindowController">
+   <children>
+      <ListView fx:id="playListView" layoutX="13.0" layoutY="12.0" prefHeight="624.0" prefWidth="380.0" />
+      <TextField fx:id="insertToListTextField" layoutX="13.0" layoutY="644.0" prefHeight="29.0" prefWidth="311.0" promptText="유투브 url 입력" />
+      <Button fx:id="insertToListButton" layoutX="331.0" layoutY="644.0" mnemonicParsing="false" onAction="#onInsertToListButton" prefHeight="29.0" prefWidth="62.0" text="신청" />
+   </children>
+</AnchorPane>

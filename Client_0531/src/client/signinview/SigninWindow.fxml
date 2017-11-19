@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="signinPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="253.0" prefWidth="457.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.signinview.SigninWindowController">
+   <children>
+      <Button fx:id="completeSigninButton" layoutX="287.0" layoutY="96.0" mnemonicParsing="false" onAction="#onCompleteSigninButton" prefHeight="62.0" prefWidth="80.0" text="가입완료" />
+      <TextField fx:id="signin_IdTextField" layoutX="105.0" layoutY="96.0" promptText="아이디" />
+      <TextField fx:id="signin_PasswordTextField" layoutX="105.0" layoutY="130.0" promptText="비밀번호" />
+   </children>
+</AnchorPane>

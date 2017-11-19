@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset=utf-8>
+<script src="jquery-3.2.1.min.js"></script>
+</head>
+<body>
+	<script>
+		var tag = document.createElement('script');
+
+		var fileDisplayArea = document.getElementById('fileDisplayArea');
+
+		tag.src = "https://www.youtube.com/iframe_api";
+		var firstScriptTag = document.getElementsByTagName('script')[0];
+		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+		var player;
+		var vid;
+		var vidLengthSended;
+		var previousState;
+
+		function onYouTubeIframeAPIReady() {
+			player = new YT.Player('player', {
+				height : '674',
+				width : '1347',
+				videoId : vid,
+				playerVars : {
+					'autoplay' : 0,
+					'controls' : 0
+				},
+				events : {
+					'onReady' : onPlayerReady,
+					'onStateChange' : onPlayerStateChange,
+					'onError': onPlayerError
+				}
+			});
+		}
+
+		function onPlayerReady(event) {
+			vidLengthSended = false;
+			requestInitToServer();
+		}
+
+		function onPlayerStateChange(event) {
+			if (event.data === YT.PlayerState.CUED) {
+				vidLengthSended = false;
+				previousState = "CUED";
+				event.target.playVideo();
+			}
+			else if (event.data === YT.PlayerState.PLAYING) {
+				if(previousState == "BUFFERING"){
+					requestInitToServer();
+				}
+				
+				if(!vidLengthSended){
+					CLIENT.sendVidInfo(player.getDuration());
+					vidLengthSended = true;
+				}
+				previousState = "PLAYING";
+			}
+			else if (event.data === YT.PlayerState.PAUSED){
+				event.target.playVideo();
+			}
+			else if(event.date === YT.PlayerState.BUFFERING){
+				previousState = "BUFFERING";
+			}
+		}
+		
+		function onPlayerError(event){
+			Client.reportToServerError(vid);
+		}
+
+		function requestInitToServer() {
+			CLIENT.requestInitToServer();
+		}
+
+		function Init(vidId, sync) {
+			if(vid==vidId){
+				if(player.getCurrentTime() - sync > 5 || player.getCurrentTime() - sync < -5){
+					player.seekTo(sync, true);
+				}
+			}
+			else{
+				vid = vidId;
+				player.cueVideoById(vid);
+				player.seekTo(sync, true);
+			}
+		}
+
+		function getCurrentTime() {
+			return player.getCurrentTime();
+		}
+	</script>
+	<div id="player"></div>
+</body>
+</html>
